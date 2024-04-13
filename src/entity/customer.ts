@@ -22,7 +22,7 @@ export default class Customer {
         return this._name;
     }
 
-    get address(): Address {
+    get Address(): Address {
         return this._address;
     }
 
@@ -41,6 +41,9 @@ export default class Customer {
     }
 
     validate() {
+        if (this._id.length === 0) {
+            throw new Error("ID is required");
+        }
         if (this._name.length === 0) {
             throw new Error("Name is required");
         }
@@ -51,6 +54,9 @@ export default class Customer {
     }
 
     activate() {
+        if (this._address === undefined) {
+            throw new Error("Address is mandatory to activate a customer");
+        }
         this._active = true;
     }
 
