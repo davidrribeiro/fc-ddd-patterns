@@ -1,15 +1,14 @@
 export default class Address {
     _street: string = "";
+    _number: number = 0;
     _city: string = "";
-    _state: string = "";
     _zip: string = "";
-    _country: string = "";
-    constructor(street: string, city: string, state: string, zip: string, country: string) {
+
+    constructor(street: string, number: number, city: string, zip: string) {
         this._street = street;
+        this._number = number;
         this._city = city;
-        this._state = state;
         this._zip = zip;
-        this._country = country;
 
         this.validate();
     }
@@ -18,41 +17,36 @@ export default class Address {
         return this._street;
     }
 
-    get city(): string {
-        return this._city;
+    get number(): number {
+        return this._number;
     }
 
-    get state(): string {
-        return this._state;
+    get city(): string {
+        return this._city;
     }
 
     get zip(): string {
         return this._zip;
     }
 
-    get country(): string {
-        return this._country;
-    }
 
     validate() {
         if (this._street.length === 0) {
             throw new Error("Street is required");
         }
+        if (this._number === 0) {
+            throw new Error("Country is required");
+        }
         if (this._city.length === 0) {
             throw new Error("City is required");
         }
-        if (this._state.length === 0) {
-            throw new Error("State is required");
-        }
+
         if (this._zip.length === 0) {
             throw new Error("Zip is required");
-        }
-        if (this._country.length === 0) {
-            throw new Error("Country is required");
         }
     }
 
     toString() {
-        return `${this._street}, ${this._city}, ${this._state}, ${this._zip}, ${this._country}`;
+        return `${this._street}, ${this._city}, ${this._zip}, ${this._number}`;
     }
 }
